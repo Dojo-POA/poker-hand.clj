@@ -1,7 +1,22 @@
 (ns dojo.core (:use [clojure.string]))
 
+(def card->face {
+	\2 :two
+	\6 :six
+	\7 :seven
+	\9 :nine
+	\t :ten
+	\k :king
+	\q :queen
+	})
+(def card->suit {
+	\s :spades
+	\h :hearts
+	\c :clubs
+	\d :diamonds})
+
 (defn card [string]
-	[({\2 :two} (first string)), :spades])
+	[(card->face (first string)), (card->suit (second string))])
 
 (defn hand [string]
   (map card (split string #" ")))
