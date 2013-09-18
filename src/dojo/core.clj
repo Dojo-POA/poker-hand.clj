@@ -2,21 +2,29 @@
 
 (def card->face {
 	\2 :two
+	\3 :three
+	\4 :four
+	\5 :five
 	\6 :six
 	\7 :seven
-	\9 :nine
+	\8 :eight
+	\9 :nine	
 	\t :ten
-	\k :king
+	\j :jack
 	\q :queen
-	})
+	\k :king
+	\a :ace })
+
 (def card->suit {
 	\s :spades
 	\h :hearts
 	\c :clubs
-	\d :diamonds})
+	\d :diamonds })
 
 (defn card [string]
-	[(card->face (first string)), (card->suit (second string))])
+	(let [face (first string)
+		    suit (second string)]
+	[(card->face face), (card->suit suit)]))
 
 (defn hand [string]
   (map card (split string #" ")))
