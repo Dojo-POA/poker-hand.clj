@@ -39,4 +39,5 @@
       (hand "2c 3c 6h 7h ad"))))
     (is (= 1 (compare-highcard
       (hand "2c 3c 6h 7h ad")
-      (hand "2c 3c 6h 6s ad"))))))
+      (hand "2c 4c 6h 6s ad"))))
+    ))
