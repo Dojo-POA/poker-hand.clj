@@ -1,4 +1,4 @@
-(ns dojo.core (:use [clojure.string]))
+(ns dojo.core (:use [clojure.string :only [split]]))
 
 (def card->face (array-map 
 	\2 :two
@@ -33,5 +33,10 @@
 			  two-precedence (.indexOf face-precedence two)]
 		(compare one-precedence two-precedence)))
 
-(defn compare-hands [player1 player2]
-	:first)
+(defn compare-highcard [hand1 hand2]
+	(let [sorted-hand1 (sort-by identity card-compare hand1)
+		    sorted-hand2 (sort-by identity card-compare hand2)
+		    zipped-hands (map vector sorted-hand1 sorted-hand2)
+		    hand-pair-with-match (first (filter (fn [[card1  card2]] (not= 0 (card-compare card1 card2))) zipped-hands))]
+		    (apply card-compare hand-pair-with-match)
+		))

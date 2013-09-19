@@ -23,17 +23,20 @@
   (testing "card parser"
     (is (= [:two, :spades] (card "2s")))))
 
-(deftest banana
+(deftest comparing
   (testing "comparing two cards"
     (is (= 1 (card-compare (card "as") (card "4s"))))
     (is (= 0 (card-compare (card "as") (card "as"))))
     (is (= -1 (card-compare (card "4s") (card "ts"))))))
 
-#_(deftest a-showdown
+(deftest a-showdown
   (testing "highest card"
-    (is (= :first (compare-hands
+    (is (= 1 (compare-highcard
       (hand "2c 3c 6h 7h ad")
       (hand "2c 3c 6h 7h td"))))
-    (is (= :second (compare-hands
+    (is (= -1 (compare-highcard
       (hand "2c 3c 6h 7h td")
-      (hand "2c 3c 6h 7h ad"))))))
+      (hand "2c 3c 6h 7h ad"))))
+    (is (= 1 (compare-highcard
+      (hand "2c 3c 6h 7h ad")
+      (hand "2c 3c 6h 6s ad"))))))
